@@ -13,6 +13,24 @@
     <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=your_amap_key"></script>
   </head>
   <body>
+    <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
+<script>
+  new CozeWebSDK.WebChatClient({
+    config: {
+      bot_id: '7573982816229687322',
+    },
+    componentProps: {
+      title: 'Coze',
+    },
+    auth: {
+      type: 'token',
+      token: 'pat_eQlC0sfJdR5RJJFQFfzVJryc36kqF0V40tTkLx25ysn21RKcGooIBu2ba5Elk10S',
+      onRefreshToken: function () {
+        return 'pat_eQlC0sfJdR5RJJFQFfzVJryc36kqF0V40tTkLx25ysn21RKcGooIBu2ba5Elk10S'
+      }
+    }
+  });
+</script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
