@@ -45,8 +45,7 @@ export function SubscribeButton() {
               
               <div className="w-48 h-48 bg-white dark:bg-gray-700 mx-auto mb-6 flex items-center justify-center border border-gray-200 dark:border-gray-600">
                 <div className="text-center">
-                  <i className="fa-solid fa-qrcode text-4xl text-gray-300 dark:text-gray-600 mb-2"></i>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">公众号二维码</p>
+                  <img src="https://s21.ax1x.com/2025/11/23/pZkcNi8.jpg" alt="公众号二维码" className="w-48 h-48 mt-2" />
                 </div>
               </div>
               

@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/Card";
 import { Button } from "@/components/Button";
+import { useState } from "react";
+import { toast } from "sonner";
+import { CozeAPI } from "@coze/api";
 
 export default function Home() {
   // 滚动动画变量
@@ -19,6 +22,62 @@ export default function Home() {
       }
     }
   };
+  // 表单状态
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    message: "",
+  });
+  // 处理表单输入变化
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // 处理表单提交
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // 表单验证
+    if (
+      !formData.name ||
+      !formData.phone
+    ) {
+      toast.error("请填写所有必填项");
+      return;
+    }
+    const apiClient = new CozeAPI({
+      token:
+        "pat_eQlC0sfJdR5RJJFQFfzVJryc36kqF0V40tTkLx25ysn21RKcGooIBu2ba5Elk10S",
+        allowPersonalAccessTokenInBrowser: true,
+      baseURL: "https://api.coze.cn",
+    });
+    const res = await apiClient.workflows.runs.create({
+      workflow_id: "7575884897472053284",
+      parameters: formData,
+    });
+    if (res.code === 0) {
+      toast.success("预约成功！我们的客服人员将尽快与您联系确认。");
+    } else {
+      toast.error("预约失败！请稍后重试。");
+    }
+    // 显示成功提示
+    toast.success("预约成功！我们的客服人员将尽快与您联系确认。");
+
+    // 重置表单
+    setFormData({
+      name: "",
+      phone: "",
+      message: "",
+    });
+    
+  } 
 
   return (
     <div className="relative">
@@ -45,19 +104,21 @@ export default function Home() {
               <span className="text-2xl md:text-3xl font-normal text-blue-600 dark:text-blue-200">专业呵护您的口腔健康</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8">
-              拥有顶尖的医疗团队和先进的设备，为您提供舒适、专业的口腔诊疗服务。
+              拥有专业的医疗团队和先进的设备，为您提供舒适、专业的口腔诊疗服务。
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/appointment" className="block">
               <Button 
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg shadow-lg hover:shadow-xl transition-all"
               >
                 立即预约
               </Button>
-              <Button 
+              </Link> 
+              {/* <Button 
                 className="bg-white hover:bg-gray-100 text-blue-600 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-300 px-8 py-3 rounded-lg text-lg shadow-md hover:shadow-lg transition-all"
               >
                 了解更多
-              </Button>
+              </Button> */}
             </div>
           </motion.div>
         </div>
@@ -315,9 +376,9 @@ export default function Home() {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            {[1, 2, 3].map((item) => (
+            {[{name: '许会元'}, {name: '张新'}, {name: '范桌西'}].map((item) => (
               <motion.div 
-                key={item}
+                key={item.name}
                 variants={fadeInUp}
                 className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all"
               >
@@ -338,7 +399,7 @@ export default function Home() {
                     />
                   </div>
                   <div>
-                    <h4 className="font-bold text-blue-800 dark:text-white">客户姓名 {item}</h4>
+                    <h4 className="font-bold text-blue-800 dark:text-white">{item.name}</h4>
                     <p className="text-gray-500 dark:text-gray-400 text-sm">牙齿{['美白', '种植', '矫正'][item - 1]}项目</p>
                   </div>
                 </div>
@@ -346,13 +407,13 @@ export default function Home() {
             ))}
           </motion.div>
           
-          <div className="text-center mt-10">
+          {/* <div className="text-center mt-10">
             <Link to="/testimonials">
               <Button className="bg-white hover:bg-gray-100 text-blue-600 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700 px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition-all">
                 查看更多评价
               </Button>
             </Link>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -393,53 +454,43 @@ export default function Home() {
               className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl"
             >
               <h3 className="text-2xl font-bold text-blue-800 dark:text-white mb-6 text-center">快速预约</h3>
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit} >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">姓名</label>
                     <input 
+                      onChange={handleChange}
+                      name="name"
+                      value={formData.name}
                       type="text" 
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                      className="w-full text-gray-700 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                       placeholder="请输入您的姓名"
                     />
                   </div>
                   <div>
                     <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">电话</label>
                     <input 
+                      onChange={handleChange}
+                      value={formData.phone}
+                      name="phone"
                       type="tel" 
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                      className="w-full text-gray-700 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                       placeholder="请输入您的联系电话"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">预约项目</label>
-                  <select className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white">
-                    <option value="">请选择预约项目</option>
-                    <option value="checkup">口腔检查</option>
-                    <option value="whitening">牙齿美白</option>
-                    <option value="filling">补牙</option>
-                    <option value="implant">种植牙</option>
-                    <option value="orthodontics">牙齿矫正</option>
-                    <option value="other">其他项目</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">预约时间</label>
-                  <input 
-                    type="date" 
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                  />
-                </div>
-                <div>
                   <label className="block text-gray-700 dark:text-gray-300 mb-2 font-medium">备注信息</label>
                   <textarea 
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                    onChange={handleChange}
+                    value={formData.message}
+                    name="message"
+                    className="w-full text-gray-700 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                     placeholder="请输入您的特殊需求或问题"
                     rows={3}
                   ></textarea>
                 </div>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg shadow-md hover:shadow-lg transition-all text-lg">
+                <Button  onClick={handleSubmit} className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg shadow-md hover:shadow-lg transition-all text-lg">
                   提交预约
                 </Button>
               </form>

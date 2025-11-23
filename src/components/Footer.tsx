@@ -24,25 +24,25 @@ export function Footer() {
   const quickLinks = [
     { name: "首页", path: "/" },
     { name: "关于我们", path: "/about" },
-    { name: "服务项目", path: "/services" },
-    { name: "成功案例", path: "/cases" },
-    { name: "客户评价", path: "/testimonials" },
-    { name: "联系我们", path: "/contact" },
+    // { name: "服务项目", path: "/services" },
+    // { name: "成功案例", path: "/cases" },
+    // { name: "客户评价", path: "/testimonials" },
+    // { name: "联系我们", path: "/contact" },
     { name: "在线预约", path: "/appointment" },
-    { name: "隐私政策", path: "#" },
-    { name: "网站地图", path: "#" }
+    // { name: "隐私政策", path: "#" },
+    // { name: "网站地图", path: "#" }
   ];
   
   // 服务项目链接
   const serviceLinks = [
     { name: "口腔检查", path: "/services" },
     { name: "牙齿美白", path: "/services" },
-    { name: "补牙", path: "/services" },
-    { name: "根管治疗", path: "/services" },
-    { name: "种植牙", path: "/services" },
-    { name: "牙齿矫正", path: "/services" },
-    { name: "儿童口腔", path: "/services" },
-    { name: "口腔外科", path: "/services" }
+    // { name: "补牙", path: "/services" },
+    // { name: "根管治疗", path: "/services" },
+    // { name: "种植牙", path: "/services" },
+    // { name: "牙齿矫正", path: "/services" },
+    // { name: "儿童口腔", path: "/services" },
+    // { name: "口腔外科", path: "/services" }
   ];
   
   // 社交媒体链接
@@ -72,7 +72,7 @@ export function Footer() {
               袋鼠口腔是抚顺市领先的口腔医疗机构，致力于为患者提供高质量的口腔健康服务。
             </p>
             <div className="flex space-x-3">
-              {socialLinks.map((link, index) => (
+              {/* {socialLinks.map((link, index) => (
                 <a 
                   key={index} 
                   href="#" 
@@ -81,7 +81,7 @@ export function Footer() {
                 >
                   <i className={`fa-brands ${link.icon}`}></i>
                 </a>
-              ))}
+              ))} */}
             </div>
           </div>
           
