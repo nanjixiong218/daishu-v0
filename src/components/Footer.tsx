@@ -24,7 +24,7 @@ export function Footer() {
   const quickLinks = [
     { name: "首页", path: "/" },
     { name: "关于我们", path: "/about" },
-    // { name: "服务项目", path: "/services" },
+    { name: "服务项目", path: "/services" },
     // { name: "成功案例", path: "/cases" },
     // { name: "客户评价", path: "/testimonials" },
     // { name: "联系我们", path: "/contact" },

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/Card";
 import { Button } from "@/components/Button";
+import { Link } from "react-router-dom";
 
 export default function Services() {
   // 滚动动画变量
@@ -215,9 +216,9 @@ export default function Services() {
                       </li>
                     )}
                   </ul>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg shadow-md hover:shadow-lg transition-all">
+                  {/* <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg shadow-md hover:shadow-lg transition-all">
                     立即预约
-                  </Button>
+                  </Button> */}
                 </div>
               </motion.div>
             ))}
@@ -382,9 +383,11 @@ export default function Services() {
             <p className="text-blue-100 mb-8 text-lg">
               立即预约，我们的专业团队将为您提供个性化的口腔健康解决方案。
             </p>
+            <Link to="/appointment" className="block">
             <Button className="bg-white hover:bg-gray-100 text-blue-600 px-8 py-3 rounded-lg text-lg shadow-lg hover:shadow-xl transition-all">
               立即预约
             </Button>
+            </Link>
           </motion.div>
         </div>
       </section>

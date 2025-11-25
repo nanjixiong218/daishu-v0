@@ -25,7 +25,7 @@ export default function About() {
       name: "李春丽",
       position: "院长",
       gender: "female",
-      description: "毕业于北京医科大学口腔医学系，拥有20年口腔临床经验，擅长复杂口腔修复和正畸治疗。",
+      description: "口腔医学专业，毕业于四川大学，口内常见疾病诊断及规范化治疗、各类牙齿拔除、牙体缺损美学修复、牙齿美白、牙周炎治疗、各类牙冠修复技术；尤为擅长牙体缺损 / 变色牙美学修复、牙体牙髓病根管治疗、青少年及成人牙齿矫正。",
       experience: "20年"
     },
     {
@@ -33,8 +33,8 @@ export default function About() {
       name: "李巍",
       position: "院长",
       gender: "male",
-      description: "上海交通大学口腔医学博士，曾在德国慕尼黑大学进修，专攻口腔种植和美学修复。",
-      experience: "18年"
+      description: "口腔医学专业，毕业于山东第一医科大学，前牙美学区种植、微创种植、即刻种植、牙槽骨量缺损种植、数字化种植、即拔即种、上颌窦内 / 外提升、复杂植骨、半 / 全口种植修复重建等疑难种植修复项目；精通美式、德式、韩式等精尖口腔种植技术。",
+      experience: "20年"
     },
     {
       id: 3,
@@ -94,7 +94,7 @@ export default function About() {
     <div>
       {/* 页面标题 */}
       <section className="bg-blue-50 dark:bg-gray-800 py-16">
-        <div className="container mx-auto px-4">
+        <div className="container px-4 mt-16">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -121,13 +121,14 @@ export default function About() {
             >
               <h2 className="text-3xl font-bold text-blue-800 dark:text-white mb-6">袋鼠口腔的故事</h2>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                袋鼠口腔成立于2005年，是一家集口腔医疗、预防、保健于一体的现代化口腔医疗机构。我们秉承"以患者为中心"的服务理念，致力于为每一位患者提供专业、舒适、安全的口腔医疗服务。
+                袋鼠口腔成立于2022年，是一家专注于口腔健康的现代化诊所，致力于提供全方位、个性化的口腔医疗服务。自成立以来，始终秉承 “患者至上，质量为本” 的核心服务理念，为每一位患者提供细致入微的关怀与专业规范的诊疗服务。
               </p>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                十五年来，我们不断引进国际先进的口腔医疗设备和技术，培养了一支由经验丰富的口腔专家组成的医疗团队，为抚顺市及周边地区的患者提供全方位的口腔健康服务。
+                多年来，我们不断引进国际先进的口腔医疗设备和技术，培养了一支由经验丰富的口腔专家组成的医疗团队，为抚顺市及周边地区的患者提供全方位的口腔健康服务。
               </p>
+              
               <p className="text-gray-600 dark:text-gray-300">
-                目前，我们拥有两家分院，分别位于抚顺市顺城区和望花区，总占地面积超过1000平方米，设有口腔内科、口腔外科、口腔修复科、口腔正畸科、儿童口腔科等多个专业科室。
+                目前，我们拥有两家分院，分别位于抚顺市顺城区和望花区，总占地面积超过2000平方米，设有口腔内科、口腔外科、口腔修复科、口腔正畸科、儿童口腔科等多个专业科室。
               </p>
             </motion.div>
             
@@ -161,7 +162,7 @@ export default function About() {
           >
             <h2 className="text-3xl md:text-4xl font-bold text-blue-800 dark:text-white mb-4">我们的使命与价值观</h2>
             <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              袋鼠口腔始终坚持"专业、诚信、关爱"的核心价值观，致力于为患者提供最优质的口腔健康服务。
+              袋鼠口腔始终坚持"仁心为本，精艺为道，臻于至善"的核心价值观，致力于为患者提供最优质的口腔健康服务。
             </p>
           </motion.div>
           
@@ -176,23 +177,23 @@ export default function About() {
               {
                 icon: "fa-heart",
                 title: "我们的使命",
-                description: "通过提供专业的口腔医疗服务，帮助患者维护口腔健康，提高生活质量，绽放自信笑容。"
+                description: "以卓越的牙科艺术，守护您的灿烂笑容与健康自信"
               },
               {
                 icon: "fa-check-circle",
                 title: "我们的愿景",
-                description: "成为抚顺市最受患者信赖的口腔医疗机构，引领口腔医疗行业的发展。"
+                description: "成为每一位患者及其家庭终身信赖的口腔健康管家"
               },
               {
                 icon: "fa-star",
                 title: "我们的价值观",
-                description: "专业、诚信、关爱、创新，以患者为中心，提供卓越的口腔医疗服务。"
+                description: "仁心为本，精艺为道，臻于至善"
               }
             ].map((item, index) => (
               <motion.div 
                 key={index}
                 variants={fadeInUp}
-                className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 px-[20px]"
               >
                 <div className="w-16 h-16 bg-blue-100 dark:bg-blue-800 rounded-full flex items-center justify-center mb-6 mx-auto">
                   <i className={`fa-solid ${item.icon} text-blue-600 dark:text-blue-300 text-2xl`}></i>
@@ -258,7 +259,7 @@ export default function About() {
       </section>
 
       {/* 荣誉展示 */}
-      <section className="py-20 bg-blue-50 dark:bg-gray-800">
+      {/* <section className="py-20 bg-blue-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
@@ -295,10 +296,10 @@ export default function About() {
             ))}
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* 诊所环境 */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      {/* <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
@@ -342,7 +343,7 @@ export default function About() {
             ))}
           </motion.div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
