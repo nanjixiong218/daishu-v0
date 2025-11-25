@@ -144,7 +144,7 @@ export default function Appointment() {
     <div>
       {/* 页面标题 */}
       <section className="bg-blue-50 dark:bg-gray-800 py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mt-16 px-4">
           <motion.div
             initial="hidden"
             whileInView="visible"
