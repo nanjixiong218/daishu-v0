@@ -71,7 +71,7 @@ export default function Appointment() {
     });
     const res = await apiClient.workflows.runs.create({
       workflow_id: "7575884897472053284",
-      parameters: {name: "xu"},
+      parameters: formData,
     });
     if (res.code === 0) {
       toast.success("预约成功！我们的客服人员将尽快与您联系确认。");
