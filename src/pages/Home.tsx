@@ -67,8 +67,6 @@ export default function Home() {
     } else {
       toast.error("预约失败！请稍后重试。");
     }
-    // 显示成功提示
-    toast.success("预约成功！我们的客服人员将尽快与您联系确认。");
 
     // 重置表单
     setFormData({
